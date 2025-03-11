@@ -1,0 +1,39 @@
+<Shell
+    x:Class="EmployeeManagementSystem.Pages.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:EmployeeManagementSystem.Pages"
+    Shell.FlyoutBehavior="Flyout"
+    Title="Employee Management System">
+
+  
+    <!-- Admin Navigation -->
+    <FlyoutItem Title="Admin" x:Name="AdminFlyout" FlyoutDisplayOptions="AsMultipleItems">
+        
+        <ShellContent Title="Dashboard" ContentTemplate="{DataTemplate local:AdminPage}" Route="Admin" />
+        
+        <ShellContent Title="Assign Task" ContentTemplate="{DataTemplate local:AssignTaskPage}" Route="AssignTaskPage" />
+        <ShellContent Title="Export PDF" ContentTemplate="{DataTemplate local:ExportPdfPage}" Route="ExportPdfPage" />
+       
+    </FlyoutItem>
+    <!-- Employee Navigation -->
+    <FlyoutItem x:Name="EmployeeFlyout" Title="Employee" IsVisible="False">
+        <ShellContent Title="Employee Dashboard" ContentTemplate="{DataTemplate local:EmployeePage}" />
+    </FlyoutItem>
+
+    <Shell.FlyoutFooter>
+        <Grid Padding="10">
+            <Button Text="Logout"
+                BackgroundColor="Red"
+                TextColor="White"
+                CornerRadius="10"
+                HeightRequest="50"
+                VerticalOptions="End"
+              
+                Clicked="OnLogoutClicked" />
+        </Grid>
+    </Shell.FlyoutFooter>
+
+
+
+</Shell>
