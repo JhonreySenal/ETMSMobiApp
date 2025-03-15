@@ -12,9 +12,10 @@ namespace EmployeeManagementSystem.Models
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public string Username { get; set; }
+
         public string Password { get; set; }
         public string Role { get; set; }
-        public decimal Salary { get; set; }
+        public double Salary { get; set; }
         public string EmployeeName { get; set; }
         public static User CurrentUser { get; set; }
     }

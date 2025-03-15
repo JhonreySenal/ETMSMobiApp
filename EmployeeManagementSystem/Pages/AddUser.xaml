@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EmployeeManagementSystem.Pages.AddUser">
+
+    <StackLayout Padding="20">
+        <Label Text="Add User" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,0,0,20"/>
+
+        <Entry x:Name="EmployeeNameEntry" Placeholder="Employee Name" />
+        <Entry x:Name="UsernameEntry" Placeholder="Username" />
+        <Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="True" />
+
+        <Label Text="Role" />
+        <Picker x:Name="RolePicker" Title="Select Role">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Admin</x:String>
+                    <x:String>Employee</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+
+        <Entry x:Name="SalaryEntry" Placeholder="Salary" Keyboard="Numeric" />
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,20,0,0">
+            <Button Text="Add" Clicked="OnAddClicked" WidthRequest="100" />
+            <Button Text="Cancel" Clicked="OnCancelClicked" WidthRequest="100" Margin="10,0" />
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

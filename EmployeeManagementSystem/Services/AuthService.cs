@@ -59,6 +59,12 @@ namespace EmployeeManagementSystem.Services
             }
         }
 
+        public void AddUser(User user)
+        {
+            // You can add additional validation here if needed
+            _dbContext.AddUser(user);
+        }
+
 
     }
 }

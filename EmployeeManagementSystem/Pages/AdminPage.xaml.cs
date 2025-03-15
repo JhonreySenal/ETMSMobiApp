@@ -1,28 +1,41 @@
 using EmployeeManagementSystem.Models;
 using EmployeeManagementSystem.Services;
+using Microsoft.Maui.Controls;
 
-namespace EmployeeManagementSystem.Pages;
-
-public partial class AdminPage : ContentPage
+namespace EmployeeManagementSystem.Pages
 {
-    private readonly User _currentUser;
-    private readonly AuthService _authService;
-
-    public AdminPage(User user, AuthService authService)
+    public partial class AdminPage : ContentPage
     {
-        InitializeComponent();
-        _currentUser = user;
-        _authService = authService;
+        private readonly User _currentUser;
+        private readonly AuthService _authService;
+
+        public AdminPage(User user, AuthService authService)
+        {
+            InitializeComponent();
+            _currentUser = user;
+            _authService = authService;
+
+            // Show the list of users on page load
+            LoadUsers();
+        }
+
+        public void LoadUsers()
+        {
+            var users = _authService.GetAllUsers();
+            UsersListView.ItemsSource = users;
+        }
 
 
-        // Show the list of users on page load
-        LoadUsers();
+        private async void OnAddUserClicked(object sender, EventArgs e)
+        {
+            // Create an instance of the AddUser  Page and pass the AuthService and this AdminPage
+            var addUser = new AddUser(_authService, this);
+            await Navigation.PushModalAsync(addUser);
+        }
+
+        public void RefreshUserList()
+        {
+            LoadUsers();
+        }
     }
-    
-    private void LoadUsers()
-    {
-        var users = _authService.GetAllUsers();
-        UsersListView.ItemsSource = users;
-    }
-
 }

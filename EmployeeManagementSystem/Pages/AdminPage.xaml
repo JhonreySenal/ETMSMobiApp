@@ -6,12 +6,13 @@
   
 
     <StackLayout Padding="0">
+
         
         <Label Text="Admin Dashboard" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,0,0,20"/>
 
         <ListView x:Name="UsersListView" Margin="0,10" HasUnevenRows="True">
             <ListView.Header>
-                <Grid Padding="10" BackgroundColor="#f0f0f0">
+                <Grid Padding="0" BackgroundColor="#f0f0f0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
@@ -24,6 +25,7 @@
                     <Label Text="Username" Grid.Column="1" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
                     <Label Text="Password" Grid.Column="2" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
                     <Label Text="Role" Grid.Column="3" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
+                    <Label Text="Salary" Grid.Column="4" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
                     <Label Text="Salary" Grid.Column="4" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
                 </Grid>
             </ListView.Header>
@@ -45,11 +47,18 @@
                             <Label Text="{Binding Password}" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
                             <Label Text="{Binding Role}" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
                             <Label Text="{Binding Salary}" Grid.Column="4" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
+                          
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+      
+   
+ <FlexLayout Direction="Row" JustifyContent="Center" AlignItems="Center" Margin="0,0,0,10">
+            <Button Text="Add User" Clicked="OnAddUserClicked" Margin="5" WidthRequest="100"/>
+          
+        </FlexLayout>
     </StackLayout>
 
 </ContentPage>
