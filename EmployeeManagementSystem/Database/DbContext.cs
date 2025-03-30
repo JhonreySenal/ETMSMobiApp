@@ -17,7 +17,9 @@ namespace EmployeeManagementSystem.Database
             _database = new SQLiteConnection(dbPath);
             _database.CreateTable<User>();
             _database.CreateTable<Tasks>();
+            
         }
+    
 
         // 🟩 User Management
         public void AddUser(User user)

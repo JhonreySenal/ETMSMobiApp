@@ -12,7 +12,7 @@ namespace EmployeeManagementSystem.Services
         public AuthService(DbContext dbContext)
         {
             _dbContext = dbContext;
-            SeedData(); // Call the method to add default users
+            SeedData();
         }
 
         public User Login(string username, string password)
@@ -31,33 +31,33 @@ namespace EmployeeManagementSystem.Services
         }
 
         private void SeedData()
+{
+    if (_dbContext.GetUser("admin", "admin123") == null && _dbContext.GetUser("employee", "employee123") == null)
+    {
+        var adminUser = new User
         {
-            // Seed only if no users exist in the database
-            if (_dbContext.GetUser("admin", "admin123") == null && _dbContext.GetUser("employee", "employee123") == null)
-            {
-                var adminUser = new User
-                {
-                    Username = "admin",
-                    Password = "admin123",
-                    Role = "Admin",
-                    EmployeeName = "Admin User",
-                    Salary = 0
-                };
+          
+            Username = "admin",
+            Password = "admin123",
+            Role = "Admin",
+            EmployeeName = "Admin User",
+            Salary = 0
+        };
 
-                var employeeUser = new User
-                {
-                    Username = "employee",
-                    Password = "employee123",
-                    Role = "Employee",
-                    EmployeeName = "Employee User",
-                    Salary = 50000
-                };
+        var employeeUser = new User
+        {
+          
+            Username = "employee",
+            Password = "employee123",
+            Role = "Employee",
+            EmployeeName = "Employee User",
+            Salary = 50000
+        };
 
-                // Add users to the database
-                _dbContext.AddUser(adminUser);
-                _dbContext.AddUser(employeeUser);
-            }
-        }
+        _dbContext.AddUser(adminUser);
+        _dbContext.AddUser(employeeUser);
+    }
+}
 
         public void AddUser(User user)
         {
