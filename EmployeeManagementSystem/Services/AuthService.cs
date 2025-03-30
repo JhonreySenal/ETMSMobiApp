@@ -65,6 +65,12 @@ namespace EmployeeManagementSystem.Services
             _dbContext.AddUser(user);
         }
 
+        public void DeleteUser(User user)
+        {
+            // Call the method in DbContext to delete the user
+            _dbContext.DeleteUser(user);
+        }
+
 
     }
 }

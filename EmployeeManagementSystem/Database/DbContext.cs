@@ -67,5 +67,11 @@ namespace EmployeeManagementSystem.Database
                 _database.Delete(task);
             }
         }
+
+        public void DeleteUser(User user)
+        {
+            // Delete the user from the database
+            _database.Delete(user);
+        }
     }
 }
