@@ -15,7 +15,7 @@ namespace EmployeeManagementSystem.Pages
             _currentUser = user;
             _authService = authService;
 
-            // Show the list of users on page load
+            
             LoadUsers();
         }
 
@@ -28,7 +28,7 @@ namespace EmployeeManagementSystem.Pages
 
         private async void OnAddUserClicked(object sender, EventArgs e)
         {
-            // Create an instance of the AddUser  Page and pass the AuthService and this AdminPage
+           
             var addUser = new AddUser(_authService, this);
             await Navigation.PushModalAsync(addUser);
         }

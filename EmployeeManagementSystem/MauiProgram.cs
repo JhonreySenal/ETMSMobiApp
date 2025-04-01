@@ -22,10 +22,14 @@ public static class MauiProgram
         var dbPath = Path.Combine(FileSystem.AppDataDirectory, "EmployeeManagement.db");
         var dbContext = new DbContext(dbPath);
         var authService = new AuthService(dbContext);
+        var taskService = new TaskService(dbContext);
 
         builder.Services.AddSingleton(authService);
+        builder.Services.AddSingleton(taskService);
         builder.Services.AddSingleton<LoginPage>();
         builder.Services.AddSingleton<User>();
+		 
+        builder.Services.AddSingleton<AssignTaskPage>();
 
 #if DEBUG
         builder.Logging.AddDebug();

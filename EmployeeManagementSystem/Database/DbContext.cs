@@ -54,10 +54,11 @@ namespace EmployeeManagementSystem.Database
             if (task != null)
             {
                 task.Status = "Completed";
-                task.CompletedDate = DateTime.Now;
+                task.CompletedDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"); // Convert DateTime to string
                 _database.Update(task);
             }
         }
+
 
         public void DeleteTask(int taskId)
         {

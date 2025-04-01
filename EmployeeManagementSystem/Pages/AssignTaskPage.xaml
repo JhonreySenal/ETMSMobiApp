@@ -1,26 +1,71 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EmployeeManagementSystem.Pages.AssignTaskPage"
-             Title="AssignTaskPage">
-    
-    <ScrollView Orientation="Horizontal">
-        <StackLayout>
-            <Label Text="Assign Task Page" FontSize="24" HorizontalOptions="Center"/>
-            <CollectionView ItemsSource="{Binding Tasks}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout Orientation="Horizontal" Padding="10">
-                            <Label Text="{Binding Id}" WidthRequest="50"/>
-                            <Label Text="{Binding EmployeeId}" WidthRequest="100"/>
-                            <Label Text="{Binding TaskDescription}" WidthRequest="200"/>
-                            <Label Text="{Binding Status}" WidthRequest="100"/>
-                            <Label Text="{Binding Deadline}" WidthRequest="150"/>
-                            <Label Text="{Binding CompletedDate}" WidthRequest="150"/>
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </StackLayout>
-    </ScrollView>
+             x:Class="EmployeeManagementSystem.Pages.AssignTaskPage">
+
+    <StackLayout Padding="0">
+        <Label Text="Admin Dashboard" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,0,0,20"/>
+
+        <ListView x:Name="TaskListView" Margin="0,10" HasUnevenRows="True">
+            <ListView.Header>
+                <Grid Padding="0" BackgroundColor="#f0f0f0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <!-- ID -->
+                        <ColumnDefinition Width="*" />
+                        <!-- EmployeeId -->
+                        <ColumnDefinition Width="*" />
+                        <!-- TaskDescription -->
+                        <ColumnDefinition Width="*" />
+                        <!-- Status -->
+                        <ColumnDefinition Width="*" />
+                        <!-- Deadline -->
+                        <ColumnDefinition Width="*" />
+                        <!-- CompletedDate -->
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Id" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
+                    <Label Text="EmployeeId" Grid.Column="1" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
+                    <Label Text="TaskDescription" Grid.Column="2" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
+                    <Label Text="Status" Grid.Column="3" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
+                    <Label Text="Deadline" Grid.Column="4" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
+                    <Label Text="CompletedDate" Grid.Column="5" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
+                </Grid>
+            </ListView.Header>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <!-- ID -->
+                                <ColumnDefinition Width="*" />
+                                <!-- EmployeeId -->
+                                <ColumnDefinition Width="*" />
+                                <!-- TaskDescription -->
+                                <ColumnDefinition Width="*" />
+                                <!-- Status -->
+                                <ColumnDefinition Width="*" />
+                                <!-- Deadline -->
+                                <ColumnDefinition Width="*" />
+                                <!-- CompletedDate -->
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="{Binding Id}" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
+                            <Label Text="{Binding EmployeeId}" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
+                            <Label Text="{Binding TaskDescription}" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
+                            <Label Text="{Binding Status}" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
+                            <Label Text="{Binding Deadline}" Grid.Column="4" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
+                            <Label Text="{Binding CompletedDate}" Grid.Column="5" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <FlexLayout Direction="Row" JustifyContent="Center" AlignItems="Center" Margin="0,0,0,10">
+            <Button Text="Assign Task" Margin="5" WidthRequest="100" Clicked="OpenAssignTaskModal"/>
+        </FlexLayout>
+    </StackLayout>
 </ContentPage>

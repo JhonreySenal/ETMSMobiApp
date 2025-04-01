@@ -13,8 +13,8 @@ namespace EmployeeManagementSystem.Models
         public int Id { get; set; }
         public int EmployeeId { get; set; }
         public string TaskDescription { get; set; }
-        public string Status { get; set; }
+        public string Status { get; set; } = "Pending";
         public DateTime Deadline { get; set; }
-        public DateTime? CompletedDate { get; set; }
+        public string? CompletedDate { get; set; } = "Not done yet";
     }
 }

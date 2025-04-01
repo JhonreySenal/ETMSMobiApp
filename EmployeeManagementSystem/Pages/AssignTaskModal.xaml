@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EmployeeManagementSystem.Pages.AssignTaskModal"
+             BackgroundColor="White">
+
+    <VerticalStackLayout Padding="20" Spacing="10">
+        <Label Text="Assign Task" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center"/>
+
+        <Entry x:Name="EmployeeIdEntry" Placeholder="Enter Employee ID"/>
+        <DatePicker x:Name="DeadlineDatePicker"/>
+        <Entry x:Name="TaskDescriptionEntry" Placeholder="Enter Task Description"/>
+
+        <Button Text="Assign Task" Clicked="AssignTaskButton"/>
+        <Button Text="Close" Clicked="CloseModal" BackgroundColor="Red" TextColor="White"/>
+    </VerticalStackLayout>
+
+</ContentPage>

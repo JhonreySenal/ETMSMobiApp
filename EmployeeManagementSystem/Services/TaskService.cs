@@ -10,47 +10,30 @@ namespace EmployeeManagementSystem.Services
     {
         private readonly DbContext _dbContext;
 
+        // Constructor ensures that dbContext is not null
         public TaskService(DbContext dbContext)
         {
-            _dbContext = dbContext;
+            _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));  // Ensure dbContext is not null
         }
 
         public void AddTask(Tasks task)
         {
-            _dbContext.AddTask(task);
+            _dbContext.AddTask(task); // Save task to database
         }
 
         public List<Tasks> GetTasks()
         {
-            return _dbContext.GetTasks();
+            return _dbContext.GetTasks(); // Get list of tasks from the database
         }
 
         public void MarkTaskComplete(int taskId)
         {
-            _dbContext.MarkTaskComplete(taskId);
+            _dbContext.MarkTaskComplete(taskId); // Mark task as complete
         }
 
         public void DeleteTask(int taskId)
         {
-            _dbContext.DeleteTask(taskId);
-        }
-
-        public void SeedTasks()
-        {
-            if (!_dbContext.GetTasks().Any())
-            {
-                var initialTasks = new List<Tasks>
-                {
-                    new Tasks { EmployeeId = 1, TaskDescription = "Complete project documentation", Status = "Pending", Deadline = DateTime.Now.AddDays(7) },
-                    new Tasks { EmployeeId = 2, TaskDescription = "Fix login bug", Status = "In Progress", Deadline = DateTime.Now.AddDays(3) },
-                    new Tasks { EmployeeId = 3, TaskDescription = "Update employee records", Status = "Pending", Deadline = DateTime.Now.AddDays(5) }
-                };
-
-                foreach (var task in initialTasks)
-                {
-                    _dbContext.AddTask(task);
-                }
-            }
+            _dbContext.DeleteTask(taskId); // Delete a task from database
         }
     }
 }
