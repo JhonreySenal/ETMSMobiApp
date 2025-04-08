@@ -26,6 +26,14 @@ namespace EmployeeManagementSystem.Services
             return _dbContext.GetTasks(); // Get list of tasks from the database
         }
 
+        public List<Tasks> GetCompletedTasksByEmployeeId(int employeeId)
+        {
+            var tasks = _dbContext.GetTasks();
+            return tasks
+                .Where(t => t.Status.Equals("Completed", StringComparison.OrdinalIgnoreCase) && t.EmployeeId == employeeId)
+                .ToList();
+        }
+
         public void MarkTaskComplete(int taskId)
         {
             _dbContext.MarkTaskComplete(taskId); // Mark task as complete

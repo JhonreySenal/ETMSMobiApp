@@ -6,5 +6,83 @@
     
     <StackLayout>
         <Label Text="Welcome to the Export PDF Page" FontSize="24" HorizontalOptions="Center"/>
+
+        <Label Text="Admin Dashboard" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,0,0,20"/>
+
+        <ListView x:Name="TaskListView" Margin="0,10" HasUnevenRows="True">
+            <ListView.Header>
+                <Grid Padding="0" BackgroundColor="#f0f0f0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <!-- ID -->
+                        <ColumnDefinition Width="*" />
+                        <!-- EmployeeId -->
+                        <ColumnDefinition Width="*" />
+                        <!-- TaskDescription -->
+                        <ColumnDefinition Width="*" />
+                        <!-- Status -->
+                        <ColumnDefinition Width="*" />
+                        <!-- Deadline -->
+                        <ColumnDefinition Width="*" />
+                        <!-- CompletedDate -->
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Id" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
+                    <Label Text="EmployeeId" Grid.Column="1" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
+                    <Label Text="TaskDescription" Grid.Column="2" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
+                    <Label Text="Status" Grid.Column="3" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
+                    <Label Text="Deadline" Grid.Column="4" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
+                    <Label Text="CompletedDate" Grid.Column="5" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
+                </Grid>
+            </ListView.Header>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <!-- ID -->
+                                <ColumnDefinition Width="*" />
+                                <!-- EmployeeId -->
+                                <ColumnDefinition Width="*" />
+                                <!-- TaskDescription -->
+                                <ColumnDefinition Width="*" />
+                                <!-- Status -->
+                                <ColumnDefinition Width="*" />
+                                <!-- Deadline -->
+                                <ColumnDefinition Width="*" />
+                                <!-- CompletedDate -->
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="{Binding Id}" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
+                            <Label Text="{Binding EmployeeId}" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
+                            <Label Text="{Binding TaskDescription}" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
+                            <Label Text="{Binding Status}" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
+                            <Label Text="{Binding Deadline}" Grid.Column="4" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
+                            <Label Text="{Binding CompletedDate}" Grid.Column="5" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Entry x:Name="SearchEntry"
+       Placeholder="Enter Employee ID"
+       Margin="10"
+       HorizontalOptions="FillAndExpand" />
+
+        <FlexLayout Direction="Row" JustifyContent="Center" AlignItems="Center" Margin="0,0,0,10">
+            <Button Text="Search"
+            Margin="5"
+            WidthRequest="100"
+            Clicked="OnSearchClicked" />
+
+            <Button Text="Export to PDF"
+            Margin="5"
+            WidthRequest="100"
+           />
+        </FlexLayout>
+
     </StackLayout>
 </ContentPage>
