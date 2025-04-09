@@ -21,7 +21,7 @@ namespace EmployeeManagementSystem.Services
             _dbContext.AddTask(task); // Save task to database
         }
 
-        public List<Tasks> GetTasks()
+        public List<Tasks> GetTasks() 
         {
             return _dbContext.GetTasks(); // Get list of tasks from the database
         }
@@ -30,7 +30,7 @@ namespace EmployeeManagementSystem.Services
         {
             var tasks = _dbContext.GetTasks();
             return tasks
-                .Where(t => t.Status.Equals("Completed", StringComparison.OrdinalIgnoreCase) && t.EmployeeId == employeeId)
+                .Where(t => t.Status.Equals("Pending", StringComparison.OrdinalIgnoreCase) && t.EmployeeId == employeeId)
                 .ToList();
         }
 

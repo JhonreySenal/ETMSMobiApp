@@ -67,7 +67,7 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Entry x:Name="SearchEntry"
+        <Entry x:Name="EmployeeIdEntry"
        Placeholder="Enter Employee ID"
        Margin="10"
        HorizontalOptions="FillAndExpand" />
@@ -81,6 +81,7 @@
             <Button Text="Export to PDF"
             Margin="5"
             WidthRequest="100"
+                    Clicked="OnExportToPdfClicked"
            />
         </FlexLayout>
 

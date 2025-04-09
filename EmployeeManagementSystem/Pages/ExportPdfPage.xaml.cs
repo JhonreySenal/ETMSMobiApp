@@ -7,13 +7,14 @@ using Microsoft.Maui.Storage;
 using PdfSharpCore.Drawing;
 using PdfSharpCore.Pdf;
 using System.IO;
+using PdfSharpCore.Fonts;
 
 namespace EmployeeManagementSystem.Pages
 {
     public partial class ExportPdfPage : ContentPage
     {
         private readonly TaskService _taskService;
-        private List<Tasks> _allTasks;
+        private List<Tasks> _allTasks = new();
 
         public ExportPdfPage(TaskService taskService)
         {
@@ -31,18 +32,33 @@ namespace EmployeeManagementSystem.Pages
         // ✅ Search only COMPLETED tasks
         private void OnSearchClicked(object sender, EventArgs e)
         {
-            var completedTasks = _allTasks
-                .Where(t => t.Status.ToLower() == "completed")
-                .ToList();
+            if (int.TryParse(EmployeeIdEntry.Text, out int employeeId))
+            {
+                var completedTasks = _taskService.GetCompletedTasksByEmployeeId(employeeId);
 
-            TaskListView.ItemsSource = completedTasks;
+                if (completedTasks.Any())
+                {
+                    TaskListView.ItemsSource = completedTasks;
+                }
+                else
+                {
+                    DisplayAlert("No Results", $"No completed tasks found for Employee ID: {employeeId}", "OK");
+                    TaskListView.ItemsSource = null;
+                }
+            }
+            else
+            {
+                DisplayAlert("Invalid Input", "Please enter a valid numeric Employee ID.", "OK");
+            }
         }
+
 
         // ✅ Export currently visible list to PDF
         private async void OnExportToPdfClicked(object sender, EventArgs e)
         {
-            var tasksToExport = TaskListView.ItemsSource.Cast<Tasks>().ToList();
+            GlobalFontSettings.FontResolver = CustomFontResolver.Instance;
 
+            var tasksToExport = TaskListView.ItemsSource.Cast<Tasks>().ToList();
             if (tasksToExport.Count == 0)
             {
                 await DisplayAlert("Export Failed", "No tasks available to export.", "OK");
@@ -89,5 +105,6 @@ namespace EmployeeManagementSystem.Pages
                 File = new ShareFile(filePath)
             });
         }
+
     }
 }
