@@ -21,6 +21,34 @@ namespace EmployeeManagementSystem.Pages
             var assignTaskModal = new AssignTaskModal(_taskService, this);
             await Navigation.PushModalAsync(assignTaskModal);
         }
+        private async void OnDeleteSelectedClicked(object sender, EventArgs e)
+        {
+            // Check if an item is selected
+            if (TaskListView.SelectedItem is Tasks selectedTask)
+            {
+                // Show confirmation dialog
+                bool confirm = await DisplayAlert("Confirm Delete",
+                    $"Are you sure you want to delete this task?", "Yes", "No");
+
+                if (confirm)
+                {
+                    // Delete the selected task
+                    _taskService.DeleteTask(selectedTask.Id);
+
+                    // Refresh the ListView
+                    loadTask();
+
+                    // Clear selection
+                    TaskListView.SelectedItem = null;
+                }
+            }
+            else
+            {
+                // Inform the user that no item is selected
+                await DisplayAlert("No Selection", "Please select a task to delete", "OK");
+            }
+        }
+
 
         public void loadTask()
         {
