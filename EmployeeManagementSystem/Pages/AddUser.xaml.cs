@@ -25,7 +25,7 @@ namespace EmployeeManagementSystem.Pages
                 Username = UsernameEntry.Text,
                 Password = PasswordEntry.Text,
                 Role = RolePicker.SelectedItem?.ToString(), // Get selected role
-                Salary = double.TryParse(SalaryEntry.Text, out double salary) ? salary : 0 // Convert to decimal
+                //Salary = double.TryParse(SalaryEntry.Text, out double salary) ? salary : 0 // Convert to decimal
             };
 
             // Add the new user to the database using AuthService

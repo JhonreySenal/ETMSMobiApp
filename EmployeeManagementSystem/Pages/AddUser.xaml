@@ -20,7 +20,7 @@
             </Picker.ItemsSource>
         </Picker>
 
-        <Entry x:Name="SalaryEntry" Placeholder="Salary" Keyboard="Numeric" />
+        <!--<Entry x:Name="SalaryEntry" Placeholder="Salary" Keyboard="Numeric" />--> 
 
         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,20,0,0">
             <Button Text="Add" Clicked="OnAddClicked" WidthRequest="100" />

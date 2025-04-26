@@ -54,7 +54,7 @@ namespace EmployeeManagementSystem.Database
             if (task != null)
             {
                 task.Status = "Completed";
-                task.CompletedDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"); // Convert DateTime to string
+                task.CompletedDate = DateTime.Now.ToString("M/d/yy"); // Convert DateTime to string
                 _database.Update(task);
             }
         }

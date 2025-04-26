@@ -41,7 +41,7 @@ namespace EmployeeManagementSystem.Services
             Password = "admin123",
             Role = "Admin",
             EmployeeName = "Admin User",
-            Salary = 0
+         //   Salary = 0
         };
 
         var employeeUser = new User
@@ -51,7 +51,7 @@ namespace EmployeeManagementSystem.Services
             Password = "employee123",
             Role = "Employee",
             EmployeeName = "Employee User",
-            Salary = 50000
+           // Salary = 50000
         };
 
         _dbContext.AddUser(adminUser);

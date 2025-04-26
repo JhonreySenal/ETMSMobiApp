@@ -36,9 +36,8 @@ namespace EmployeeManagementSystem.Services
 
         public void MarkTaskComplete(int taskId)
         {
-            _dbContext.MarkTaskComplete(taskId); // Mark task as complete
+            _dbContext.MarkTaskComplete(taskId);
         }
-
         public void DeleteTask(int taskId)
         {
             _dbContext.DeleteTask(taskId); // Delete a task from database
