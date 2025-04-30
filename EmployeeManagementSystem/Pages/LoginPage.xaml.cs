@@ -31,11 +31,11 @@ namespace EmployeeManagementSystem.Pages
                 var user = _authService.Login(username, password);
                 if (user != null)
                 {
-                    // Pass the logged-in user to AppShell
+                   
                     var appShell = new AppShell(user);
                     Application.Current.MainPage = appShell;
 
-                    // Navigate to the appropriate page based on the user's role
+            
                     if (user.Role == "Admin")
                         await Shell.Current.GoToAsync("//AdminPage");
                     else if (user.Role == "Employee")

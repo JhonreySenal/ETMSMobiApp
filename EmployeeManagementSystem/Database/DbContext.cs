@@ -10,7 +10,7 @@ namespace EmployeeManagementSystem.Database
     {
         private readonly SQLiteConnection _database;
 
-        public SQLiteConnection Database => _database; // Expose the database connection if needed
+        public SQLiteConnection Database => _database; 
 
         public DbContext(string dbPath)
         {
@@ -21,7 +21,7 @@ namespace EmployeeManagementSystem.Database
         }
     
 
-        // 🟩 User Management
+       
         public void AddUser(User user)
         {
             _database.Insert(user);
@@ -37,7 +37,7 @@ namespace EmployeeManagementSystem.Database
             return _database.Table<User>().ToList();
         }
 
-        // 🟩 Task Management
+        
         public void AddTask(Tasks task)
         {
             _database.Insert(task);
@@ -54,7 +54,7 @@ namespace EmployeeManagementSystem.Database
             if (task != null)
             {
                 task.Status = "Completed";
-                task.CompletedDate = DateTime.Now.ToString("M/d/yy"); // Convert DateTime to string
+                task.CompletedDate = DateTime.Now.ToString("M/d/yy"); 
                 _database.Update(task);
             }
         }
@@ -71,7 +71,6 @@ namespace EmployeeManagementSystem.Database
 
         public void DeleteUser(User user)
         {
-            // Delete the user from the database
             _database.Delete(user);
         }
     }

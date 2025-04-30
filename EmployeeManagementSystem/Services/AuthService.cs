@@ -17,16 +17,16 @@ namespace EmployeeManagementSystem.Services
 
         public User Login(string username, string password)
         {
-            // Find the user with matching credentials
+         
             User user = _dbContext.GetUser(username, password);
-            User.CurrentUser = user; // Set the static property
+            User.CurrentUser = user; 
             return user;
 
         }
 
         public List<User> GetAllUsers()
         {
-            // Fetch all users from the database
+          
             return _dbContext.GetUsers();
         }
 
@@ -61,13 +61,13 @@ namespace EmployeeManagementSystem.Services
 
         public void AddUser(User user)
         {
-            // You can add additional validation here if needed
+          
             _dbContext.AddUser(user);
         }
 
         public void DeleteUser(User user)
         {
-            // Call the method in DbContext to delete the user
+         
             _dbContext.DeleteUser(user);
         }
 

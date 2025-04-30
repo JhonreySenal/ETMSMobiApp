@@ -10,20 +10,20 @@ namespace EmployeeManagementSystem.Services
     {
         private readonly DbContext _dbContext;
 
-        // Constructor ensures that dbContext is not null
+       
         public TaskService(DbContext dbContext)
         {
-            _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));  // Ensure dbContext is not null
+            _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));  
         }
 
         public void AddTask(Tasks task)
         {
-            _dbContext.AddTask(task); // Save task to database
+            _dbContext.AddTask(task); 
         }
 
         public List<Tasks> GetTasks() 
         {
-            return _dbContext.GetTasks(); // Get list of tasks from the database
+            return _dbContext.GetTasks(); 
         }
 
         public List<Tasks> GetCompletedTasksByEmployeeId(int employeeId)
@@ -40,7 +40,7 @@ namespace EmployeeManagementSystem.Services
         }
         public void DeleteTask(int taskId)
         {
-            _dbContext.DeleteTask(taskId); // Delete a task from database
+            _dbContext.DeleteTask(taskId); 
         }
     }
 }

@@ -29,7 +29,7 @@ namespace EmployeeManagementSystem.Pages
             TaskListView.ItemsSource = _allTasks;
         }
 
-        // ✅ Search only COMPLETED tasks
+       
         private void OnSearchClicked(object sender, EventArgs e)
         {
             if (int.TryParse(EmployeeIdEntry.Text, out int employeeId))
@@ -53,7 +53,7 @@ namespace EmployeeManagementSystem.Pages
         }
 
 
-        // ✅ Export currently visible list to PDF
+      
         private async void OnExportToPdfClicked(object sender, EventArgs e)
         {
             GlobalFontSettings.FontResolver = CustomFontResolver.Instance;

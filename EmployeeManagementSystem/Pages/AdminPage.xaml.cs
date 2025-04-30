@@ -34,21 +34,21 @@ namespace EmployeeManagementSystem.Pages
         }
         private async void OnDeleteUser(object sender, EventArgs e)
         {
-            // Get the ID from the button's CommandParameter
+           
             var button = (Button)sender;
             var userId = (int)button.CommandParameter;
 
-            // Find the user by ID
+            
             var userToDelete = _authService.GetAllUsers().FirstOrDefault(u => u.Id == userId);
             if (userToDelete != null)
             {
-                // Confirm deletion
+
                 bool confirm = await DisplayAlert("Confirm Delete", $"Are you sure you want to delete {userToDelete.Username}?", "Yes", "No");
                 if (confirm)
                 {
-                    // Call the delete method
+                  
                     _authService.DeleteUser(userToDelete);
-                    LoadUsers(); // Refresh the user list
+                    LoadUsers(); 
                 }
             }
             else
