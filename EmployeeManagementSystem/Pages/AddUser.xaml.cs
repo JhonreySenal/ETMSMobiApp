@@ -31,7 +31,7 @@ namespace EmployeeManagementSystem.Pages
            
             _authService.AddUser(newUser);
 
-           
+            
             _adminPage.LoadUsers();
 
          

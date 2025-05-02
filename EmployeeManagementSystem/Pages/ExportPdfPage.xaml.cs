@@ -20,7 +20,7 @@ namespace EmployeeManagementSystem.Pages
         {
             InitializeComponent();
             _taskService = taskService;
-            LoadTasks();
+            
         }
 
         private void LoadTasks()

@@ -11,7 +11,7 @@
         <DatePicker x:Name="DeadlineDatePicker"/>
         <Entry x:Name="TaskDescriptionEntry" Placeholder="Enter Task Description"/>
 
-        <Button Text="Assign Task" Clicked="AssignTaskButton"/>
+        <Button Text="Assign Task" Clicked="AssignTaskButton" BackgroundColor="Green"/>
         <Button Text="Close" Clicked="CloseModal" BackgroundColor="Red" TextColor="White"/>
     </VerticalStackLayout>
 
