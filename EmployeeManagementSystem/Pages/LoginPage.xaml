@@ -2,11 +2,22 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EmployeeManagementSystem.Pages.LoginPage"
-             Title="LoginPage">
+           >
 
     <StackLayout Padding="30">
-        <Entry x:Name="UsernameEntry" Placeholder="Username" />
-        <Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="True" />
-        <Button Text="Login" Clicked="OnLoginClicked" />
+        <Border
+    Stroke="White"
+    StrokeThickness="1" 
+    StrokeShape="RoundRectangle 20"
+    Padding="0"
+            Margin="20"
+    HorizontalOptions="Center">
+            <Image
+        Source="logo.jpg"
+        Aspect="AspectFit" HeightRequest="180" />
+        </Border>
+        <Entry x:Name="UsernameEntry" Placeholder="Username"  Margin="0,20,0,0" />
+        <Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="True"   Margin="0,20,0,0"/>
+        <Button Text="Login" Clicked="OnLoginClicked" CornerRadius="30" BackgroundColor="DarkBlue"  Margin="0,30,0,0" FontAttributes="Bold"/>
     </StackLayout>
 </ContentPage>

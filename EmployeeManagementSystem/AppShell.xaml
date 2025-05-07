@@ -18,7 +18,9 @@
     </FlyoutItem>
     <!-- Employee Navigation -->
     <FlyoutItem x:Name="EmployeeFlyout" Title="Employee" IsVisible="False">
-        <ShellContent Title="Employee Dashboard" ContentTemplate="{DataTemplate local:EmployeePage}" />
+        <ShellContent Title="Employee Dashboard"
+                      ContentTemplate="{DataTemplate local:EmployeePage}"
+                      Route="EmployeePage" />
     </FlyoutItem>
 
     <Shell.FlyoutFooter>
@@ -26,7 +28,8 @@
             <Button Text="Logout"
                 BackgroundColor="Red"
                 TextColor="White"
-                CornerRadius="10"
+                CornerRadius="30"
+                    FontAttributes="Bold"
                 HeightRequest="50"
                 VerticalOptions="End"
               

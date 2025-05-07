@@ -26,11 +26,17 @@ namespace EmployeeManagementSystem.Services
             return _dbContext.GetTasks(); 
         }
 
+        public List<Tasks> GetTasksByEmployeeId(int employeeId)
+        {
+            return _dbContext.GetTasks().Where(t => t.EmployeeId == employeeId).ToList();
+        }
+
+
         public List<Tasks> GetCompletedTasksByEmployeeId(int employeeId)
         {
             var tasks = _dbContext.GetTasks();
             return tasks
-                .Where(t => t.Status.Equals("Pending", StringComparison.OrdinalIgnoreCase) && t.EmployeeId == employeeId)
+                .Where(t => t.Status.Equals("Completed", StringComparison.OrdinalIgnoreCase) && t.EmployeeId == employeeId)
                 .ToList();
         }
 

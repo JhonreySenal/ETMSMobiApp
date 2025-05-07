@@ -7,11 +7,11 @@
     <StackLayout>
         <Label Text="Welcome to the Export PDF Page" FontSize="24" HorizontalOptions="Center"/>
 
-        <Label Text="Admin Dashboard" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,0,0,20"/>
+    
 
         <ListView x:Name="TaskListView" Margin="0,10" HasUnevenRows="True">
             <ListView.Header>
-                <Grid Padding="0" BackgroundColor="#f0f0f0">
+                <Grid Padding="0,12,0,12" Background="Black">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <!-- ID -->
@@ -27,12 +27,12 @@
                         <!-- CompletedDate -->
                     </Grid.ColumnDefinitions>
 
-                    <Label Text="Id" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
-                    <Label Text="EmployeeId" Grid.Column="1" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
-                    <Label Text="TaskDescription" Grid.Column="2" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
-                    <Label Text="Status" Grid.Column="3" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
-                    <Label Text="Deadline" Grid.Column="4" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
-                    <Label Text="CompletedDate" Grid.Column="5" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
+                    <Label Text="Id" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap" TextColor="White"/>
+                    <Label Text="EmployeeId" Grid.Column="1" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"  TextColor="White"/>
+                    <Label Text="TaskDescription" Grid.Column="2" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"  TextColor="White"/>
+                    <Label Text="Status" Grid.Column="3" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"  TextColor="White"/>
+                    <Label Text="Deadline" Grid.Column="4" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"  TextColor="White"/>
+                    <Label Text="CompletedDate" Grid.Column="5" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"  TextColor="White"/>
                 </Grid>
             </ListView.Header>
 
@@ -57,8 +57,8 @@
 
                             <Label Text="{Binding Id}" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
                             <Label Text="{Binding EmployeeId}" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
-                            <Label Text="{Binding TaskDescription}" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
-                            <Label Text="{Binding Status}" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
+                            <Label Text="{Binding TaskDescription}" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="WordWrap"/>
+                            <Label Text="{Binding Status}" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="WordWrap"/>
                             <Label Text="{Binding Deadline}" Grid.Column="4" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
                             <Label Text="{Binding CompletedDate}" Grid.Column="5" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
                         </Grid>
@@ -75,12 +75,16 @@
         <FlexLayout Direction="Row" JustifyContent="Center" AlignItems="Center" Margin="0,0,0,10">
             <Button Text="Search"
             Margin="5"
-            WidthRequest="100"
+            WidthRequest="120"
+                    BackgroundColor="Green"
+                    FontAttributes="Bold"
             Clicked="OnSearchClicked" />
 
             <Button Text="Export to PDF"
             Margin="5"
-            WidthRequest="100"
+            WidthRequest="120"
+                    BackgroundColor="Green"
+                     FontAttributes="Bold"
                     Clicked="OnExportToPdfClicked"
            />
         </FlexLayout>
