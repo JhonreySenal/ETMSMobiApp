@@ -82,7 +82,20 @@ namespace EmployeeManagementSystem.Pages
         public void loadTask()
         {
             var tasks = _taskService.GetTasks();
-            TaskListView.ItemsSource = tasks;
+            if (tasks != null && tasks.Any())
+            {
+          
+                var sortedTasks = tasks.OrderByDescending(t => t.Deadline).ToList();
+
+               
+
+                TaskListView.ItemsSource = sortedTasks;
+            }
+            else
+            {
+               
+                TaskListView.ItemsSource = tasks;
+            }
         }
     }
 }

@@ -4,8 +4,7 @@
              x:Class="EmployeeManagementSystem.Pages.EmployeePage">
 
     <StackLayout Padding="0">
-        <Label Text="Employee Dashboard" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,0,0,20"/>
-
+       
         <ListView x:Name="TaskListView" Margin="0,10" HasUnevenRows="True"  SelectionMode="Single">
             <ListView.Header>
                 <Grid Padding="0,12,0,12" Background="Black">
