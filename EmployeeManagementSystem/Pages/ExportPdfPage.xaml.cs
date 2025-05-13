@@ -71,7 +71,7 @@ namespace EmployeeManagementSystem.Pages
             var font = new XFont("Verdana", 12, XFontStyle.Regular);
 
             double yPoint = 40;
-            gfx.DrawString("Task List", new XFont("Verdana", 14, XFontStyle.Bold), XBrushes.Black,
+            gfx.DrawString($"Task List {DateTime.Now:M-d-yy}", new XFont("Verdana", 14, XFontStyle.Bold), XBrushes.Black,
                            new XRect(0, yPoint, page.Width, 20), XStringFormats.TopCenter);
             yPoint += 40;
 

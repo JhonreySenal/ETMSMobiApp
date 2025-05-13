@@ -49,12 +49,12 @@ namespace EmployeeManagementSystem.Database
         }
 
         public void MarkTaskComplete(int taskId)
-        {
+        { 
             var task = _database.Find<Tasks>(taskId);
             if (task != null)
             {
                 task.Status = "Completed";
-                task.CompletedDate = DateTime.Now.ToString("M/d/yy"); 
+                task.CompletedDate = DateTime.Now.ToString("M/d/yy h:mm:ss tt");
                 _database.Update(task);
             }
         }

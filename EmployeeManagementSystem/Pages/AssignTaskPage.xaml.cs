@@ -97,5 +97,6 @@ namespace EmployeeManagementSystem.Pages
                 TaskListView.ItemsSource = tasks;
             }
         }
+
     }
 }

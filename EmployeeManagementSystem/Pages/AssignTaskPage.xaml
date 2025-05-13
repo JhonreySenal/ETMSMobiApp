@@ -56,8 +56,8 @@
                             <Label Text="{Binding EmployeeId}" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
                             <Label Text="{Binding TaskDescription}" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="WordWrap"/>
                             <Label Text="{Binding Status}" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="WordWrap"/>
-                            <Label Text="{Binding Deadline}" Grid.Column="4" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
-                            <Label Text="{Binding CompletedDate}" Grid.Column="5" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="NoWrap"/>
+                            <Label Text="{Binding Deadline}" Grid.Column="4" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="WordWrap"/>
+                            <Label Text="{Binding CompletedDate}" Grid.Column="5" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" LineBreakMode="WordWrap"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

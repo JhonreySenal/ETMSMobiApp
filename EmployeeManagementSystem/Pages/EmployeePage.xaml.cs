@@ -47,23 +47,92 @@ public partial class EmployeePage : ContentPage
 
     public void loadTask()
     {
+        List<Tasks> tasks = new List<Tasks>();
+
         // Check if current user is an employee
         if (_currentUser != null && _currentUser.Role == "Employee")
         {
             // Only get tasks for this employee
-            var tasks = _taskService.GetTasksByEmployeeId(_currentUser.Id);
+            tasks = _taskService.GetTasksByEmployeeId(_currentUser.Id);
+
+            // Sort tasks by deadline (newest first)
+            if (tasks != null && tasks.Any())
+            {
+                tasks = tasks.OrderByDescending(t => t.Deadline).ToList();
+            }
+
             TaskListView.ItemsSource = tasks;
+
+            // Check for upcoming deadlines for employee's tasks
+            CheckForUpcomingDeadlines(tasks);
         }
-        else if (_currentUser != null && _currentUser.Role == "Admin")
-        {
-            // Admins can see all tasks
-            var tasks = _taskService.GetTasks();
-            TaskListView.ItemsSource = tasks;
-        }
+       
         else
         {
-            // No user logged in or unknown role
+      
             TaskListView.ItemsSource = new List<Tasks>();
+        }
+    }
+
+    private async void CheckForUpcomingDeadlines(IEnumerable<Tasks> tasks)
+    {
+        // Get current date/time
+        DateTime now = DateTime.Now;
+
+        // Tasks with deadlines within the next 24 hours
+        var upcomingTasks = new List<Tasks>();
+
+        foreach (var task in tasks)
+        {
+            // Skip tasks that are already completed
+            if (task.Status == "Completed")
+                continue;
+
+            DateTime deadlineDate;
+
+            // Parse the deadline (adjust as needed based on your Task class implementation)
+            if (task.Deadline is DateTime deadline)
+            {
+                deadlineDate = deadline;
+            }
+            else if (DateTime.TryParse(task.Deadline.ToString(), out DateTime parsedDate))
+            {
+                deadlineDate = parsedDate;
+            }
+            else
+            {
+                // Skip if we can't parse the deadline
+                continue;
+            }
+
+            // Calculate time until deadline
+            TimeSpan timeUntilDeadline = deadlineDate - now;
+
+            // Check if deadline is within next 24 hours but not passed
+            if (timeUntilDeadline.TotalHours <= 24 && timeUntilDeadline.TotalHours > 0)
+            {
+                upcomingTasks.Add(task);
+            }
+        }
+
+        // If there are upcoming tasks, show an alert
+        if (upcomingTasks.Any())
+        {
+            string alertTitle = "Upcoming Deadlines";
+            string taskList = "";
+
+            // Customize message based on user role
+            if (_currentUser.Role == "Employee")
+            {
+                taskList = "You have tasks due within the next 24 hours:\n\n";
+            }
+
+            foreach (var task in upcomingTasks)
+            {
+                taskList += $"- Task ID {task.Id}: {task.TaskDescription} (Due: {task.Deadline})\n";
+            }
+
+            await DisplayAlert(alertTitle, taskList, "OK");
         }
     }
 

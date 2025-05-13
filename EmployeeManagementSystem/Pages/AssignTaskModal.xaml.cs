@@ -21,8 +21,11 @@ namespace EmployeeManagementSystem.Pages
         {
          
             string employeeIdInput = EmployeeIdEntry.Text; 
-            DateTime deadline = DeadlineDatePicker.Date;
+            DateTime date = DeadlineDatePicker.Date;
+            TimeSpan timePart = DeadlineTimePicker.Time;
+            DateTime deadline = date.Add(timePart);
             string taskDescription = TaskDescriptionEntry.Text; 
+
 
           
             if (string.IsNullOrWhiteSpace(employeeIdInput) || string.IsNullOrWhiteSpace(taskDescription))
