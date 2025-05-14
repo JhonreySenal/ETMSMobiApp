@@ -23,7 +23,7 @@ namespace EmployeeManagementSystem.Pages
             {
                 EmployeeName = EmployeeNameEntry.Text,
                 Username = UsernameEntry.Text,
-                Password = PasswordEntry.Text,
+                Password = PasswordHelper.HashPassword(PasswordEntry.Text),
                 Role = RolePicker.SelectedItem?.ToString(), 
                
             };

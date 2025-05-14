@@ -13,16 +13,17 @@ namespace EmployeeManagementSystem.Services
         {
             _dbContext = dbContext;
             SeedData();
+            //ResetUsers();
         }
 
         public User Login(string username, string password)
         {
-         
-            User user = _dbContext.GetUser(username, password);
-            User.CurrentUser = user; 
+            string hashedPassword = PasswordHelper.HashPassword(password);
+            User user = _dbContext.GetUser(username, hashedPassword);
+            User.CurrentUser = user;
             return user;
-
         }
+
 
         public List<User> GetAllUsers()
         {
@@ -30,34 +31,32 @@ namespace EmployeeManagementSystem.Services
             return _dbContext.GetUsers();
         }
 
-        private void SeedData()
-{
-    if (_dbContext.GetUser("admin", "admin123") == null && _dbContext.GetUser("employee", "employee123") == null)
-    {
-        var adminUser = new User
+        public void SeedData()
         {
-          
-            Username = "admin",
-            Password = "admin123",
-            Role = "Admin",
-            EmployeeName = "Admin User",
-         //   Salary = 0
-        };
+            if (_dbContext.GetUser("admin", PasswordHelper.HashPassword("admin123")) == null &&
+                _dbContext.GetUser("employee", PasswordHelper.HashPassword("employee123")) == null)
+            {
+                var adminUser = new User
+                {
+                    Username = "admin",
+                    Password = PasswordHelper.HashPassword("admin123"),
+                    Role = "Admin",
+                    EmployeeName = "Admin User",
+                };
 
-        var employeeUser = new User
-        {
-          
-            Username = "employee",
-            Password = "employee123",
-            Role = "Employee",
-            EmployeeName = "Employee User",
-           // Salary = 50000
-        };
+                var employeeUser = new User
+                {
+                    Username = "employee",
+                    Password = PasswordHelper.HashPassword("employee123"),
+                    Role = "Employee",
+                    EmployeeName = "Employee User",
+                };
 
-        _dbContext.AddUser(adminUser);
-        _dbContext.AddUser(employeeUser);
-    }
-}
+                _dbContext.AddUser(adminUser);
+                _dbContext.AddUser(employeeUser);
+            }
+        }
+
 
         public void AddUser(User user)
         {
@@ -70,7 +69,10 @@ namespace EmployeeManagementSystem.Services
          
             _dbContext.DeleteUser(user);
         }
+        //public void ResetUsers()
+        //{
+        //    _dbContext.ResetUsersWithIdRestart();
+        //}
 
-
-    }
+        }
 }
