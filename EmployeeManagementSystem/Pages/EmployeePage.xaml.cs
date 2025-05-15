@@ -64,7 +64,7 @@ public partial class EmployeePage : ContentPage
             TaskListView.ItemsSource = tasks;
 
             // Check for upcoming deadlines for employee's tasks
-            CheckForUpcomingDeadlines(tasks);
+            //CheckForUpcomingDeadlines(tasks);
         }
        
         else
@@ -74,66 +74,66 @@ public partial class EmployeePage : ContentPage
         }
     }
 
-    private async void CheckForUpcomingDeadlines(IEnumerable<Tasks> tasks)
-    {
-        // Get current date/time
-        DateTime now = DateTime.Now;
+    //private async void CheckForUpcomingDeadlines(IEnumerable<Tasks> tasks)
+    //{
+    //    // Get current date/time
+    //    DateTime now = DateTime.Now;
 
-        // Tasks with deadlines within the next 24 hours
-        var upcomingTasks = new List<Tasks>();
+    //    // Tasks with deadlines within the next 24 hours
+    //    var upcomingTasks = new List<Tasks>();
 
-        foreach (var task in tasks)
-        {
-            // Skip tasks that are already completed
-            if (task.Status == "Completed")
-                continue;
+    //    foreach (var task in tasks)
+    //    {
+    //        // Skip tasks that are already completed
+    //        if (task.Status == "Completed")
+    //            continue;
 
-            DateTime deadlineDate;
+    //        DateTime deadlineDate;
 
-            // Parse the deadline (adjust as needed based on your Task class implementation)
-            if (task.Deadline is DateTime deadline)
-            {
-                deadlineDate = deadline;
-            }
-            else if (DateTime.TryParse(task.Deadline.ToString(), out DateTime parsedDate))
-            {
-                deadlineDate = parsedDate;
-            }
-            else
-            {
-                // Skip if we can't parse the deadline
-                continue;
-            }
+    //        // Parse the deadline (adjust as needed based on your Task class implementation)
+    //        if (task.Deadline is DateTime deadline)
+    //        {
+    //            deadlineDate = deadline;
+    //        }
+    //        else if (DateTime.TryParse(task.Deadline.ToString(), out DateTime parsedDate))
+    //        {
+    //            deadlineDate = parsedDate;
+    //        }
+    //        else
+    //        {
+    //            // Skip if we can't parse the deadline
+    //            continue;
+    //        }
 
-            // Calculate time until deadline
-            TimeSpan timeUntilDeadline = deadlineDate - now;
+    //        // Calculate time until deadline
+    //        TimeSpan timeUntilDeadline = deadlineDate - now;
 
-            // Check if deadline is within next 24 hours but not passed
-            if (timeUntilDeadline.TotalHours <= 24 && timeUntilDeadline.TotalHours > 0)
-            {
-                upcomingTasks.Add(task);
-            }
-        }
+    //        // Check if deadline is within next 24 hours but not passed
+    //        if (timeUntilDeadline.TotalHours <= 24 && timeUntilDeadline.TotalHours > 0)
+    //        {
+    //            upcomingTasks.Add(task);
+    //        }
+    //    }
 
-        // If there are upcoming tasks, show an alert
-        if (upcomingTasks.Any())
-        {
-            string alertTitle = "Upcoming Deadlines";
-            string taskList = "";
+    //    // If there are upcoming tasks, show an alert
+    //    if (upcomingTasks.Any())
+    //    {
+    //        string alertTitle = "Upcoming Deadlines";
+    //        string taskList = "";
 
-            // Customize message based on user role
-            if (_currentUser.Role == "Employee")
-            {
-                taskList = "You have tasks due within the next 24 hours:\n\n";
-            }
+    //        // Customize message based on user role
+    //        if (_currentUser.Role == "Employee")
+    //        {
+    //            taskList = "You have tasks due within the next 24 hours:\n\n";
+    //        }
 
-            foreach (var task in upcomingTasks)
-            {
-                taskList += $"- Task ID {task.Id}: {task.TaskDescription} (Due: {task.Deadline})\n";
-            }
+    //        foreach (var task in upcomingTasks)
+    //        {
+    //            taskList += $"- Task ID {task.Id}: {task.TaskDescription} (Due: {task.Deadline})\n";
+    //        }
 
-            await DisplayAlert(alertTitle, taskList, "OK");
-        }
-    }
+    //        await DisplayAlert(alertTitle, taskList, "OK");
+    //    }
+    //}
 
 }

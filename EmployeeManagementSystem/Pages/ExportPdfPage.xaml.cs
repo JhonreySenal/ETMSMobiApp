@@ -53,7 +53,7 @@ namespace EmployeeManagementSystem.Pages
         }
 
 
-      
+
         private async void OnExportToPdfClicked(object sender, EventArgs e)
         {
             GlobalFontSettings.FontResolver = CustomFontResolver.Instance;
@@ -70,35 +70,55 @@ namespace EmployeeManagementSystem.Pages
             var gfx = XGraphics.FromPdfPage(page);
             var font = new XFont("Verdana", 12, XFontStyle.Regular);
 
-            double yPoint = 40;
-            gfx.DrawString($"Task List {DateTime.Now:M-d-yy}", new XFont("Verdana", 14, XFontStyle.Bold), XBrushes.Black,
-                           new XRect(0, yPoint, page.Width, 20), XStringFormats.TopCenter);
+            double margin = 40;
+            double yPoint = margin;
+            double contentWidth = page.Width - 2 * margin;
+
+            // Title
+            gfx.DrawString($"Task List - {DateTime.Now:M-d-yy}",
+                new XFont("Verdana", 14, XFontStyle.Bold),
+                XBrushes.Black,
+                new XRect(margin, yPoint, contentWidth, 20),
+                XStringFormats.TopLeft);
             yPoint += 40;
 
             foreach (var task in tasksToExport)
             {
-                string line = $"ID: {task.Id} | EmpID: {task.EmployeeId} | Desc: {task.TaskDescription} | " +
-                              $"Status: {task.Status} | Deadline: {task.Deadline} | Completed: {task.CompletedDate}";
+                string fullText = $"ID: {task.Id} | EmpID: {task.EmployeeId} | Desc: {task.TaskDescription} | " +
+                                  $"Status: {task.Status} | Deadline: {task.Deadline} | Completed: {task.CompletedDate}";
 
-                gfx.DrawString(line, font, XBrushes.Black, new XRect(40, yPoint, page.Width - 80, page.Height), XStringFormats.TopLeft);
-                yPoint += 20;
-
-                if (yPoint > page.Height - 40)
+                var wrappedLines = PdfHelper.WrapText(gfx, fullText, font, contentWidth);
+                foreach (var line in wrappedLines)
                 {
-                    page = document.AddPage();
-                    gfx = XGraphics.FromPdfPage(page);
-                    yPoint = 40;
+                    gfx.DrawString(line, font, XBrushes.Black,
+                        new XRect(margin, yPoint, contentWidth, page.Height),
+                        XStringFormats.TopLeft);
+                    yPoint += 20;
+
+                    if (yPoint > page.Height - margin)
+                    {
+                        page = document.AddPage();
+                        gfx = XGraphics.FromPdfPage(page);
+                        yPoint = margin;
+                    }
                 }
+
+                yPoint += 10; // Extra space between tasks
             }
 
+            // 📂 Save to app data directory (works on Android, iOS, Windows, etc.)
             var fileName = $"TaskList_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
-            var filePath = Path.Combine(FileSystem.CacheDirectory, fileName);
+            var filePath = Path.Combine(FileSystem.AppDataDirectory, fileName);
 
             using (var stream = File.Create(filePath))
             {
                 document.Save(stream);
             }
 
+            // ✅ Optional: Show saved path and offer sharing
+            await DisplayAlert("Success", $"PDF saved to:\n{filePath}", "OK");
+
+            // 🔄 Optionally share the file
             await Share.RequestAsync(new ShareFileRequest
             {
                 Title = "Exported Task List",
@@ -107,4 +127,5 @@ namespace EmployeeManagementSystem.Pages
         }
 
     }
+
 }
